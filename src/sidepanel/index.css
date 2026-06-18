@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* Theme design variables */
+:root {
+  --bg-main: #080d19;
+  --bg-sidebar: #050811;
+  --bg-card: #0c1424;
+  --bg-input: #080d19;
+  --border-color: #132039;
+  
+  --text-title: #f8fafc;
+  --text-main: #cbd5e1;
+  --text-muted: #64748b;
+  
+  --cyan-primary: #06b6d4;
+  --cyan-hover: #0891b2;
+}
+
+/* Light mode overrides */
+.light {
+  --bg-main: #f8fafc;
+  --bg-sidebar: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --border-color: #e2e8f0;
+  
+  --text-title: #0f172a;
+  --text-main: #334155;
+  --text-muted: #64748b;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Apply CSS variables to existing custom theme classes */
+.bg-\[\#080d19\] {
+  background-color: var(--bg-input) !important;
+}
+.bg-\[\#050811\] {
+  background-color: var(--bg-sidebar) !important;
+}
+.bg-\[\#0c1424\] {
+  background-color: var(--bg-card) !important;
+}
+.border-\[\#132039\] {
+  border-color: var(--border-color) !important;
+}
+.border-slate-800 {
+  border-color: var(--border-color) !important;
+}
+
+/* Apply text colors */
+.text-slate-50, .text-slate-100 {
+  color: var(--text-title) !important;
+}
+.text-slate-200, .text-slate-300 {
+  color: var(--text-main) !important;
+}
+.text-slate-400, .text-slate-500 {
+  color: var(--text-muted) !important;
+}
+
+/* Scrollbar customization matching current theme */
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--bg-sidebar);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--cyan-primary);
+  }
+}
+
+/* Custom micro-animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.98); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
+
+@keyframes float-up {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-float-up {
+  animation: float-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
